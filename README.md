@@ -48,3 +48,11 @@ export default tseslint.config({
   },
 })
 ```
+### Local Test
+```npm run dev```
+
+
+# Deployment
+```npm run build```
+
+```firebase deploy```
