@@ -22,7 +22,8 @@ const QuizApp = () => {
   const [showNext, setShowNext] = useState<boolean>(false);
   const [showRetry, setShowRetry] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
-  const [retries, setRetries] = useState<{ [question: string]: number }>({}); // Track retries per question
+  const [retryCounts, setRetryCounts] = useState<{ [question: string]: number }>({}); // Track retries per question
+  const [questionScores, setQuestionScores] = useState<{ [question: string]: number }>({}); // Store final scores per question
 
   // Shuffle questions only once per quiz change
   useEffect(() => {
@@ -32,12 +33,18 @@ const QuizApp = () => {
     setShowNext(false);
     setShowRetry(false);
     setScore(0);
-    setRetries({});
+    setRetryCounts({});
+    setQuestionScores({});
   }, [quizIndex]);
+
+  useEffect(() => {
+    console.log("Question Scores:", questionScores);
+  }, [questionScores]);
+
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  // Fix hook order by placing useMemo **before** useEffect
+  // Shuffle options **only once per question**
   const shuffledOptions = useMemo(
     () => (currentQuestion ? shuffleArray([...currentQuestion.options]) : []),
     [currentQuestion]
@@ -46,28 +53,36 @@ const QuizApp = () => {
   const handleAnswer = (selected: string) => {
     if (!currentQuestion) return;
 
+    const questionKey = currentQuestion.question;
+    const retryCount = retryCounts[questionKey] || 0;
+
     if (selected === currentQuestion.answer) {
       setFeedback("Correct!");
       setShowNext(true);
       setShowRetry(false);
 
-      // Calculate score with deductions based on retries
-      const retryCount = retries[currentQuestion.question] || 0;
-      const deduction = 20 * (1 - Math.pow(0.5, retryCount));
-      const questionScore = Math.max(20 - deduction, 0); // Ensure score doesn't go negative
+      // Calculate the final score based on the highest retry count for that question
+      const finalScore = 20 * Math.pow(0.5, retryCount);
 
-      setScore((prev) => prev + questionScore);
+      setQuestionScores((prev) => {
+        const previousScore = prev[questionKey] || 0;
+
+        // Update the total score by removing the previous score and adding the new one
+        setScore((prevTotal) => prevTotal - previousScore + finalScore);
+
+        return { ...prev, [questionKey]: finalScore };
+      });
     } else {
       setFeedback(`Wrong! The correct answer is ${currentQuestion.answer}`);
       setShowRetry(true);
 
-      // Requeue question immediately
+      // Always requeue the question, even if answered correctly later
       setQuestions((prev) => [...prev, currentQuestion]);
 
-      // Track retry count for scoring
-      setRetries((prev) => ({
+      // Increment retry count
+      setRetryCounts((prev) => ({
         ...prev,
-        [currentQuestion.question]: (prev[currentQuestion.question] || 0) + 1,
+        [questionKey]: retryCount + 1,
       }));
     }
   };
@@ -77,6 +92,11 @@ const QuizApp = () => {
     setShowNext(false);
     setShowRetry(false);
     setCurrentQuestionIndex((prev) => prev + 1);
+  };
+
+  const handleRetry = () => {
+    setFeedback(null);
+    setShowRetry(false);
   };
 
   const handleSwitchQuiz = () => {
@@ -146,9 +166,9 @@ const QuizApp = () => {
       {showRetry && (
         <button
           className="mt-4 bg-red-500 text-white p-3 rounded-lg hover:bg-red-700"
-          onClick={handleNextQuestion} // Now advances after requeue
+          onClick={handleRetry}
         >
-          Continue
+          Retry
         </button>
       )}
     </div>
