@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1da1f2;
+  --color-secondary: #ffad1f;
+  --color-accent: #ff4d4d;
+  --color-background: #f5f5f5;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 16px;
+}
+
+/* Apply custom properties to Tailwind classes */
+:root {
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+  --tw-border-opacity: 1;
+}
+
+/* Global styles */
+body {
+  background-color: var(--color-background);
+  color: #333;
+  font-family: sans-serif;
+}
+
+/* Example of using custom properties */
+.btn {
+  background-color: var(--color-primary);
+  color: white;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-medium);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: black;
+}
