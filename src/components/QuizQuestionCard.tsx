@@ -1,5 +1,3 @@
-// components/QuizQuestionCard.tsx
-import { QuizQuestion } from "../interface/QuizQuestion";
 import { QuizQuestionCardProps } from "../interface/QuizQuestionCardProps";
 
 const QuizQuestionCard = ({

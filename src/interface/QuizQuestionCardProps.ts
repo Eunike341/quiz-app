@@ -1,3 +1,5 @@
+import { QuizQuestion } from "./QuizQuestion";
+
 export interface QuizQuestionCardProps {
      name: string;
      setName: (name: string) => void;
