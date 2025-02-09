@@ -1,12 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import quizzes from "./data";
-
-// Define the Quiz Question type
-interface QuizQuestion {
-  question: string;
-  options: string[];
-  answer: string;
-}
+import { QuizQuestion } from "./interface/QuizQuestion";
+import QuizQuestionCard from "./components/QuizQuestionCard";
 
 // Shuffle array function
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -123,55 +118,21 @@ const QuizApp = () => {
   }
 
   return (
-    <div className="p-6 max-w-2xl w-full mx-auto bg-white shadow-lg rounded-lg">
-      <h2 className="text-xl font-bold mb-4">{quizzes[quizIndex].title}</h2>
-
-      {/* Name Input at the top */}
-      <div className="mb-4">
-        <label className="block text-lg font-bold">Enter your name:</label>
-        <input
-          type="text"
-          placeholder="Your name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="border p-2 rounded-lg w-full mt-2"
-        />
-      </div>
-
-      <p className="text-lg font-bold mb-2">
-        Question {currentQuestionIndex + 1} of {questions.length}
-      </p>
-      <p className="text-lg mb-3">{currentQuestion.question}</p>
-      <div className="flex flex-col gap-2">
-        {shuffledOptions.map((option: string, idx: number) => (
-          <button
-            key={idx}
-            className="block w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-700 transition-all text-lg font-medium"
-            onClick={() => handleAnswer(option)}
-            disabled={showNext || showRetry}
-          >
-            {option}
-          </button>
-        ))}
-      </div>
-      {feedback && <p className="mt-4 text-red-600 font-bold">{feedback}</p>}
-      {showNext && (
-        <button
-          className="mt-4 bg-green-500 text-white p-3 rounded-lg hover:bg-green-700"
-          onClick={handleNextQuestion}
-        >
-          Next
-        </button>
-      )}
-      {showRetry && (
-        <button
-          className="mt-4 bg-red-500 text-white p-3 rounded-lg hover:bg-red-700"
-          onClick={handleRetry}
-        >
-          Retry
-        </button>
-      )}
-    </div>
+    <QuizQuestionCard
+        name={name}
+        setName={setName}
+        quizTitle={quizzes[quizIndex].title}
+        currentQuestion={currentQuestion}
+        currentQuestionIndex={currentQuestionIndex}
+        totalQuestions={questions.length}
+        shuffledOptions={shuffledOptions}
+        feedback={feedback}
+        showNext={showNext}
+        showRetry={showRetry}
+        handleAnswer={handleAnswer}
+        handleNextQuestion={handleNextQuestion}
+        handleRetry={handleRetry}
+      />
   );
 };
 
