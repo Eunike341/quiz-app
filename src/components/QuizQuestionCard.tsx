@@ -1,4 +1,6 @@
 import { QuizQuestionCardProps } from "../interface/QuizQuestionCardProps";
+import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'; // Icons for feedback
+
 
 const QuizQuestionCard = ({
   name,
@@ -27,7 +29,7 @@ const QuizQuestionCard = ({
               placeholder="Your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="border p-2 rounded-lg w-full mt-2"
+              className="border p-2 rounded-lg w-full mt-2 focus:ring-2 focus:ring-blue-500 transition-all"
             />
           </div>
 
@@ -47,10 +49,24 @@ const QuizQuestionCard = ({
               </button>
             ))}
           </div>
-          {feedback && <p className="mt-4 text-red-600 font-bold">{feedback}</p>}
+
+          {feedback && (
+              <div className="mt-4 flex items-center gap-2 text-lg font-bold">
+                {feedback.includes("Correct") ? (
+                  <CheckCircleIcon className="w-6 h-6 text-green-500" />
+                ) : (
+                  <XCircleIcon className="w-6 h-6 text-red-500" />
+                )}
+                <span className={`text-${feedback.includes("Correct") ? "green" : "red"}-600`}>
+                  {feedback}
+                </span>
+              </div>
+          )}
+
+
           {showNext && (
             <button
-              className="mt-4 bg-green-500 text-white p-3 rounded-lg hover:bg-green-700"
+              className="mt-4 bg-green-500 text-white p-3 rounded-lg hover:bg-green-700 active:scale-95 transition-all"
               onClick={handleNextQuestion}
             >
               Next
@@ -58,7 +74,7 @@ const QuizQuestionCard = ({
           )}
           {showRetry && (
             <button
-              className="mt-4 bg-red-500 text-white p-3 rounded-lg hover:bg-red-700"
+              className="mt-4 bg-red-500 text-white p-3 rounded-lg hover:bg-red-700 active:scale-95 transition-all"
               onClick={handleRetry}
             >
               Retry
