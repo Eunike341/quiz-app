@@ -1,11 +1,9 @@
 import React from "react";
-import { Score } from "../interface/Score";
 import { ScoreTableProps } from "../interface/ScoreTableProps";
 
 const ScoreTable: React.FC<ScoreTableProps> = ({ scores, loading }) => {
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">Submitted Scores</h1>
       {loading ? (
         <p>Loading scores...</p>
       ) : (
