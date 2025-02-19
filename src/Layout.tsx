@@ -30,7 +30,7 @@ const Layout = () => {
 
         {/* Mobile Menu Toggle Button */}
         <button
-          className={`block md:hidden text-white transform transition duration-300 ${
+          className={`block md:hidden text-white text-3xl p-2 transform transition duration-300 ${
             isOpen ? "rotate-90" : "rotate-0"
           }`}
           onClick={() => setIsOpen(!isOpen)}
