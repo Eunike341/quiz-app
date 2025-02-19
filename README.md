@@ -56,3 +56,4 @@ export default tseslint.config({
 ```npm run build```
 
 ```firebase deploy```
+```firebase deploy --only hosting:quiz-app-10e3d```
