@@ -2,6 +2,23 @@ import { useState, useEffect, useMemo } from "react";
 import quizzes from "./data";
 import { QuizQuestion } from "./interface/QuizQuestion";
 import QuizQuestionCard from "./components/QuizQuestionCard";
+import db from "./firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
+async function addNewDocument(name:string, score:number) {
+  const inviteCode = 'QUIZ_APPZ';
+  try {
+    const docRef = await addDoc(collection(db, 'quiz-app'), {
+      name,
+      score,
+      inviteCode,
+      timestamp: serverTimestamp()
+    });
+    console.log('Document written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+}
 
 // Shuffle array function
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -35,6 +52,12 @@ const QuizApp = () => {
   useEffect(() => {
     console.log("Question Scores:", questionScores);
   }, [questionScores]);
+
+  useEffect(() => {
+    if (currentQuestionIndex >= questions.length && name) {
+      addNewDocument(name, score);
+    }
+  }, [currentQuestionIndex, questions.length, name, score]); // Depend on these values
 
 
   const currentQuestion = questions[currentQuestionIndex];
