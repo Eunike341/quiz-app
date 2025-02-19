@@ -1,13 +1,28 @@
-import { Outlet, Link } from "react-router-dom";
-import { useState } from "react";
+import { Outlet, Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Layout = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  // Detect scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50); // Add background if scrolled
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div>
       {/* Navigation Bar */}
-      <nav className="p-4 bg-blue-500 text-white flex justify-between items-center shadow-lg">
+      <nav
+        className={`fixed w-full top-0 z-50 p-4 transition-all duration-300 ${
+          isScrolled ? "bg-blue-600 shadow-lg" : "bg-blue-500"
+        } text-white flex justify-between items-center`}
+      >
         {/* Brand / Logo */}
         <Link to="/" className="text-lg font-bold">
           Quiz App
@@ -15,45 +30,69 @@ const Layout = () => {
 
         {/* Mobile Menu Toggle Button */}
         <button
-          className="block md:hidden text-white"
+          className={`block md:hidden text-white transform transition duration-300 ${
+            isOpen ? "rotate-90" : "rotate-0"
+          }`}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? "✖" : "☰"}
         </button>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-4">
+        <ul className="hidden md:flex space-x-6">
           <li>
-            <Link to="/" className="hover:text-gray-300 transition">
+            <Link
+              to="/"
+              className={`hover:text-gray-300 transition ${
+                location.pathname === "/" ? "border-b-2 border-white" : ""
+              }`}
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link to="/records" className="hover:text-gray-300 transition">
+            <Link
+              to="/records"
+              className={`hover:text-gray-300 transition ${
+                location.pathname === "/records" ? "border-b-2 border-white" : ""
+              }`}
+            >
               View Scores
             </Link>
           </li>
         </ul>
       </nav>
 
-      {/* Mobile Dropdown Menu */}
-      {isOpen && (
-        <ul className="md:hidden bg-blue-500 text-white p-4 space-y-2">
+      {/* Mobile Dropdown Menu (Slide Down) */}
+      <div
+        className={`fixed top-[64px] left-0 w-full bg-blue-600 text-white md:hidden transform transition-all duration-300 ${
+          isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+        }`}
+      >
+        <ul className="p-4 space-y-3">
           <li>
-            <Link to="/" className="block p-2 hover:bg-blue-600 rounded" onClick={() => setIsOpen(false)}>
+            <Link
+              to="/"
+              className="block p-2 hover:bg-blue-700 rounded"
+              onClick={() => setIsOpen(false)}
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link to="/records" className="block p-2 hover:bg-blue-600 rounded" onClick={() => setIsOpen(false)}>
+            <Link
+              to="/records"
+              className="block p-2 hover:bg-blue-700 rounded"
+              onClick={() => setIsOpen(false)}
+            >
               View Scores
             </Link>
           </li>
         </ul>
-      )}
+      </div>
 
       {/* Page Content */}
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="pt-16 min-h-screen flex items-center justify-center bg-gray-100">
         <Outlet />
       </div>
     </div>

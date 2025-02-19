@@ -1,6 +1,5 @@
 import { QuizQuestionCardProps } from "../interface/QuizQuestionCardProps";
-import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'; // Icons for feedback
-
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid"; // Icons for feedback
 
 const QuizQuestionCard = ({
   name,
@@ -19,68 +18,74 @@ const QuizQuestionCard = ({
 }: QuizQuestionCardProps) => {
   return (
     <div className="p-6 max-w-2xl w-full mx-auto bg-white shadow-lg rounded-lg">
-          <h2 className="text-xl font-bold mb-4">{quizTitle}</h2>
+      <h2 className="text-xl font-bold mb-4">{quizTitle}</h2>
 
-          {/* Name Input at the top */}
-          <div className="mb-4">
-            <label className="block text-lg font-bold">Enter your name:</label>
-            <input
-              type="text"
-              placeholder="Your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="border p-2 rounded-lg w-full mt-2 focus:ring-2 focus:ring-blue-500 transition-all"
-            />
-          </div>
+      {/* Name Input */}
+      <div className="mb-4">
+        <label className="block text-lg font-bold">Enter your name:</label>
+        <input
+          type="text"
+          placeholder="Your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="border p-2 rounded-lg w-full mt-2 focus:ring-2 focus:ring-blue-500 transition-all"
+        />
+      </div>
 
-          <p className="text-lg font-bold mb-2">
-            Question {currentQuestionIndex + 1} of {totalQuestions}
-          </p>
-          <p className="text-lg mb-3">{currentQuestion.question}</p>
-          <div className="flex flex-col gap-2">
-            {shuffledOptions.map((option: string, idx: number) => (
-              <button
-                key={idx}
-                className="block w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-700 transition-all text-lg font-medium"
-                onClick={() => handleAnswer(option)}
-                disabled={showNext || showRetry}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
+      <p className="text-lg font-bold mb-2">
+        Question {currentQuestionIndex + 1} of {totalQuestions}
+      </p>
+      <p className="text-lg mb-3">{currentQuestion.question}</p>
+      <div className="flex flex-col gap-2">
+        {shuffledOptions.map((option: string, idx: number) => (
+          <button
+            key={idx}
+            className="block w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-700 transition-all text-lg font-medium"
+            onClick={() => handleAnswer(option)}
+            disabled={showNext || showRetry}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
 
-          {feedback && (
-              <div className="mt-4 flex items-center gap-2 text-lg font-bold">
-                {feedback.includes("Correct") ? (
-                  <CheckCircleIcon className="w-6 h-6 text-green-500" />
-                ) : (
-                  <XCircleIcon className="w-6 h-6 text-red-500" />
-                )}
-                <span className={`text-${feedback.includes("Correct") ? "green" : "red"}-600`}>
-                  {feedback}
-                </span>
-              </div>
-          )}
+      <div className="mt-4 min-h-10 flex items-center gap-2 text-lg font-bold transition-opacity duration-300">
+        {feedback ? (
+          <>
+            {feedback.includes("Correct") ? (
+              <CheckCircleIcon className="w-6 h-6 text-green-500" />
+            ) : (
+              <XCircleIcon className="w-6 h-6 text-red-500" />
+            )}
+            <span className={`text-${feedback.includes("Correct") ? "green" : "red"}-600`}>
+              {feedback}
+            </span>
+          </>
+        ) : (
+          <span className="opacity-0">Placeholder</span> // Keeps height fixed
+        )}
+      </div>
 
-
-          {showNext && (
-            <button
-              className="mt-4 bg-green-500 text-white p-3 rounded-lg hover:bg-green-700 active:scale-95 transition-all"
-              onClick={handleNextQuestion}
-            >
-              Next
-            </button>
-          )}
-          {showRetry && (
-            <button
-              className="mt-4 bg-red-500 text-white p-3 rounded-lg hover:bg-red-700 active:scale-95 transition-all"
-              onClick={handleRetry}
-            >
-              Retry
-            </button>
-          )}
-        </div>
+      <div className="mt-4 min-h-14 flex flex-col items-start gap-2">
+        {showNext ? (
+          <button
+            className="bg-green-500 text-white p-3 rounded-lg hover:bg-green-700 active:scale-95 transition-all w-fit inline-flex"
+            onClick={handleNextQuestion}
+          >
+            Next
+          </button>
+        ) : showRetry ? (
+          <button
+            className="bg-red-500 text-white p-3 rounded-lg hover:bg-red-700 active:scale-95 transition-all w-fit inline-flex"
+            onClick={handleRetry}
+          >
+            Retry
+          </button>
+        ) : (
+          <span className="opacity-0">Placeholder</span> // Keeps height fixed
+        )}
+      </div>
+    </div>
   );
 };
 
