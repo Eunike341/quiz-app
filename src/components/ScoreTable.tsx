@@ -26,7 +26,7 @@ const ScoreTable: React.FC<ScoreTableProps> = ({ scores, loading }) => {
               ))
             ) : (
               <tr>
-                <td colSpan={2} className="border border-gray-300 px-4 py-2">
+                <td colSpan={3} className="border border-gray-300 px-4 py-2">
                   No scores submitted yet.
                 </td>
               </tr>
