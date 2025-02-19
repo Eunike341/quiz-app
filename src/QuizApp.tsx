@@ -5,12 +5,13 @@ import QuizQuestionCard from "./components/QuizQuestionCard";
 import db from "./firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
-async function addNewDocument(name:string, score:number) {
+async function addNewDocument(name:string, score:number, quizIndex:number) {
   const inviteCode = 'QUIZ_APPZ';
   try {
     const docRef = await addDoc(collection(db, 'quiz-app'), {
       name,
       score,
+      quiz: 'quiz-' + quizIndex,
       inviteCode,
       timestamp: serverTimestamp()
     });
@@ -55,7 +56,7 @@ const QuizApp = () => {
 
   useEffect(() => {
     if (currentQuestionIndex >= questions.length && name) {
-      addNewDocument(name, score);
+      addNewDocument(name, score, quizIndex);
     }
   }, [currentQuestionIndex, questions.length, name, score]); // Depend on these values
 
