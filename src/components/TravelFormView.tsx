@@ -1,6 +1,6 @@
 // TravelFormView.tsx
-import React, { ChangeEvent, FormEvent } from "react";
-import TravelFormViewProps from "../interface/TravelFormViewProps"
+import React from "react";
+import { TravelFormViewProps } from "../interface/TravelFormViewProps"
 
 const TravelFormView: React.FC<TravelFormViewProps> = ({
   name,

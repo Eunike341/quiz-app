@@ -1,7 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { db, storage } from "./firebase";
+import { db } from "./firebase";
 import { collection, addDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import TravelFormView from "./components/TravelFormView";
 
 const TravelForm: React.FC = () => {
@@ -84,8 +83,6 @@ const TravelForm: React.FC = () => {
         imageSizeKB = getBase64SizeInKB(imageBase64);
       }
 
-
-      // Store form data in Firestore (including image URL)
       await addDoc(collection(db, "places"), {
         name,
         location,
@@ -95,6 +92,7 @@ const TravelForm: React.FC = () => {
         imageBase64: imageBase64,
         imageSizeKB,
         createdAt: new Date(),
+        inviteCode: "MINGGU_BELAJAR",
       });
 
       setMessage("Data submitted successfully!");
