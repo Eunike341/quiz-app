@@ -6,7 +6,7 @@ import { db } from "./firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 async function addNewDocument(name:string, score:number, quizIndex:number) {
-  const inviteCode = 'QUIZ_APPZ';
+  const inviteCode = 'MINGGU_BELAJAR';
   try {
     const docRef = await addDoc(collection(db, 'quiz-app'), {
       name,

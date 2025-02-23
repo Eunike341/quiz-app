@@ -1,3 +1,5 @@
+import { ChangeEvent, FormEvent } from "react";
+
 export interface TravelFormViewProps {
      name: string;
      location: string;

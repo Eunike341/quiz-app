@@ -63,6 +63,9 @@ const PlacesList: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-4">Places Submitted</h2>
+      <p className="mb-6 text-gray-600">
+        Total records: <span className="font-bold">{places.length}</span>
+      </p>
 
       <div className="mb-6">
         <label className="block text-lg font-bold mb-2">Select Date:</label>
