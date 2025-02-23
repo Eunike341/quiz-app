@@ -24,7 +24,7 @@ const Layout = () => {
         } text-white flex justify-between items-center`}
       >
         {/* Brand / Logo */}
-        <Link to="/" className="text-lg font-bold">
+        <Link to="/places" className="text-lg font-bold">
           Quiz App
         </Link>
 
@@ -42,9 +42,9 @@ const Layout = () => {
         <ul className="hidden md:flex space-x-6">
           <li>
             <Link
-              to="/"
+              to="/places"
               className={`hover:text-gray-300 transition ${
-                location.pathname === "/" ? "border-b-2 border-white" : ""
+                location.pathname === "/places" ? "border-b-2 border-white" : ""
               }`}
             >
               Home
@@ -52,12 +52,12 @@ const Layout = () => {
           </li>
           <li>
             <Link
-              to="/records"
+              to="/places_list"
               className={`hover:text-gray-300 transition ${
-                location.pathname === "/records" ? "border-b-2 border-white" : ""
+                location.pathname === "/places_list" ? "border-b-2 border-white" : ""
               }`}
             >
-              View Scores
+              View Places
             </Link>
           </li>
         </ul>
@@ -72,7 +72,7 @@ const Layout = () => {
         <ul className="p-4 space-y-3">
           <li>
             <Link
-              to="/"
+              to="/places"
               className="block p-2 hover:bg-blue-700 rounded"
               onClick={() => setIsOpen(false)}
             >
@@ -81,7 +81,7 @@ const Layout = () => {
           </li>
           <li>
             <Link
-              to="/records"
+              to="/places_list"
               className="block p-2 hover:bg-blue-700 rounded"
               onClick={() => setIsOpen(false)}
             >

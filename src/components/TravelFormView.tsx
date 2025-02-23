@@ -20,7 +20,6 @@ const TravelFormView: React.FC<TravelFormViewProps> = ({
 }) => {
   return (
     <div className="max-w-2xl w-full mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-6 text-center">Travel Form</h2>
 
       {message && (
         <div
@@ -37,7 +36,7 @@ const TravelFormView: React.FC<TravelFormViewProps> = ({
       <form onSubmit={onSubmit} className="space-y-6">
         {/* Name Input */}
         <div>
-          <label className="block text-lg font-bold">Your Name</label>
+          <label className="block text-lg font-bold">Nama</label>
           <input
             type="text"
             className="border p-3 rounded-lg w-full mt-2 focus:ring-2 focus:ring-blue-500 transition-all"
@@ -49,7 +48,7 @@ const TravelFormView: React.FC<TravelFormViewProps> = ({
 
         {/* Country/City */}
         <div>
-          <label className="block text-lg font-bold">Country/City</label>
+          <label className="block text-lg font-bold">Negara/ Kota</label>
           <input
             type="text"
             className="border p-3 rounded-lg w-full mt-2 focus:ring-2 focus:ring-blue-500 transition-all"
@@ -61,7 +60,7 @@ const TravelFormView: React.FC<TravelFormViewProps> = ({
 
         {/* Population */}
         <div>
-          <label className="block text-lg font-bold">Population</label>
+          <label className="block text-lg font-bold">Populasi</label>
           <input
             type="number"
             className="border p-3 rounded-lg w-full mt-2 focus:ring-2 focus:ring-blue-500 transition-all"
@@ -73,7 +72,7 @@ const TravelFormView: React.FC<TravelFormViewProps> = ({
 
         {/* Traditional Food */}
         <div>
-          <label className="block text-lg font-bold">Traditional Food</label>
+          <label className="block text-lg font-bold">Makanan Traditional</label>
           <input
             type="text"
             className="border p-3 rounded-lg w-full mt-2 focus:ring-2 focus:ring-blue-500 transition-all"
@@ -85,7 +84,7 @@ const TravelFormView: React.FC<TravelFormViewProps> = ({
 
         {/* Place of Interest */}
         <div>
-          <label className="block text-lg font-bold">Place of Interest</label>
+          <label className="block text-lg font-bold">Tempat Wisata</label>
           <input
             type="text"
             className="border p-3 rounded-lg w-full mt-2 focus:ring-2 focus:ring-blue-500 transition-all"
