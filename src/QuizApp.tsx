@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import quizzes from "./data";
 import { QuizQuestion } from "./interface/QuizQuestion";
 import QuizQuestionCard from "./components/QuizQuestionCard";
-import db from "./firebase";
+import { db } from "./firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 async function addNewDocument(name:string, score:number, quizIndex:number) {

@@ -5,6 +5,8 @@ import './index.css'
 import App from './App.tsx'
 import RecordsPage from "./RecordsPage.tsx";
 import Layout from "./Layout.tsx";
+import TravelForm from "./TravelForm.tsx";
+import PlacesList from "./PlacesList.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -14,6 +16,8 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<Layout />}>
           <Route index element={<App />} />
           <Route path="records" element={<RecordsPage />} />
+          <Route path="places" element={<TravelForm />} />
+          <Route path="places_list" element={<PlacesList />} />
         </Route>
       </Routes>
     </Router>
