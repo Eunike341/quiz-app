@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs, query, orderBy, where} from "firebase/firestore";
-import db from "./firebase";
+import { db } from "./firebase";
 import { Score } from "./interface/Score";
 import ScoreTable from "./components/ScoreTable";
 import DatePicker from "react-datepicker";
