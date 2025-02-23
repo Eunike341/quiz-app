@@ -85,7 +85,7 @@ const Layout = () => {
               className="block p-2 hover:bg-blue-700 rounded"
               onClick={() => setIsOpen(false)}
             >
-              View Scores
+              View Places
             </Link>
           </li>
         </ul>
