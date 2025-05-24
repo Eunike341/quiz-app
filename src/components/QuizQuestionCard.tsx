@@ -36,16 +36,32 @@ const QuizQuestionCard = ({
         Question {currentQuestionIndex + 1} of {totalQuestions}
       </p>
       <p className="text-lg mb-4">{currentQuestion.question}</p>
+      {/* Show question image if there is one */}
+      {currentQuestion.image && (
+        <img
+          src={currentQuestion.image}
+          alt="Question related"
+          className="mb-4 w-full max-h-64 object-contain rounded-lg shadow"
+        />
+      )}
 
       <div className="flex flex-col gap-3">
         {shuffledOptions.map((option: string, idx: number) => (
           <button
             key={idx}
             className="block w-full bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-700 transition-all text-lg font-medium"
-            onClick={() => handleAnswer(option)}
+            onClick={() => handleAnswer(option.text)}
             disabled={showNext || showRetry}
           >
-            {option}
+            {/* If option has image, show it */}
+            {option.image && (
+                <img
+                src={option.image}
+                alt={`Option ${idx + 1}`}
+                className="w-12 h-12 object-contain rounded bg-white p-1"
+                />
+            )}
+            {option.text}
           </button>
         ))}
       </div>

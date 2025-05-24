@@ -7,7 +7,10 @@ export interface QuizQuestionCardProps {
      currentQuestion: QuizQuestion;
      currentQuestionIndex: number;
      totalQuestions: number;
-     shuffledOptions: string[];
+     shuffledOptions: {
+        text: string;
+        image?: string;
+     }[];
      feedback: string | null;
      showNext: boolean;
      showRetry: boolean;

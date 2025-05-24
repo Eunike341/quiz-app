@@ -81,7 +81,7 @@ const QuizApp = () => {
       setShowRetry(false);
 
       // Calculate the final score based on the highest retry count for that question
-      const finalScore = 20 * Math.pow(0.5, retryCount);
+      const finalScore = 10 * Math.pow(0.5, retryCount);
 
       setQuestionScores((prev) => {
         const previousScore = prev[questionKey] || 0;
@@ -131,12 +131,7 @@ const QuizApp = () => {
           🎉 Congratulations, {name ? <span className="font-bold">{name}</span> : "Player"}! Your score is{" "}
           <span className="font-bold">{score}</span>.
         </p>
-        <button
-          className="mt-4 bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
-          onClick={handleSwitchQuiz}
-        >
-          Switch Quiz
-        </button>
+
       </div>
     );
   }
