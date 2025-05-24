@@ -131,6 +131,12 @@ const QuizApp = () => {
           🎉 Congratulations, {name ? <span className="font-bold">{name}</span> : "Player"}! Your score is{" "}
           <span className="font-bold">{score}</span>.
         </p>
+        <button
+          className="mt-4 bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
+          onClick={handleSwitchQuiz}
+        >
+          Done
+        </button>
 
       </div>
     );

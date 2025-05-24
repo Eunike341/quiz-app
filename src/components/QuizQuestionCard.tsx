@@ -1,4 +1,5 @@
 import { QuizQuestionCardProps } from "../interface/QuizQuestionCardProps";
+import { QuizOption } from "../interface/QuizQuestion";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid"; // Icons for feedback
 
 const QuizQuestionCard = ({
@@ -46,7 +47,7 @@ const QuizQuestionCard = ({
       )}
 
       <div className="flex flex-col gap-3">
-        {shuffledOptions.map((option: string, idx: number) => (
+        {shuffledOptions.map((option: QuizOption, idx: number) => (
           <button
             key={idx}
             className="block w-full bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-700 transition-all text-lg font-medium"

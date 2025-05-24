@@ -1,4 +1,4 @@
-import { QuizQuestion } from "./QuizQuestion";
+import { QuizQuestion, QuizOption } from "./QuizQuestion";
 
 export interface QuizQuestionCardProps {
      name: string;
@@ -7,10 +7,7 @@ export interface QuizQuestionCardProps {
      currentQuestion: QuizQuestion;
      currentQuestionIndex: number;
      totalQuestions: number;
-     shuffledOptions: {
-        text: string;
-        image?: string;
-     }[];
+     shuffledOptions: QuizOption[];
      feedback: string | null;
      showNext: boolean;
      showRetry: boolean;
