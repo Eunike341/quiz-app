@@ -81,7 +81,7 @@ const QuizApp = () => {
       setShowRetry(false);
 
       // Calculate the final score based on the highest retry count for that question
-      const finalScore = 10 * Math.pow(0.5, retryCount);
+      const finalScore = 5 * Math.pow(0.5, retryCount);
 
       setQuestionScores((prev) => {
         const previousScore = prev[questionKey] || 0;

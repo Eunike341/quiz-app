@@ -42,7 +42,7 @@ const QuizQuestionCard = ({
         <img
           src={currentQuestion.image}
           alt="Question related"
-          className="mb-4 w-full max-h-64 object-contain rounded-lg shadow"
+          className="max-w-full h-auto rounded-lg shadow mb-2"
         />
       )}
 
