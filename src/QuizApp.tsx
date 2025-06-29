@@ -28,11 +28,9 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 
 const QuizApp = () => {
   const searchParams = new URLSearchParams(window.location.search);
-  const quizParam = searchParams.get('quiz') || 'quiz1';
-
+  const quizIndex = searchParams.get('quiz') || 'quiz1';
 
   const [name, setName] = useState<string>("");
-  const [quizIndex, setQuizIndex] = useState<string>(quizParam);
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [feedback, setFeedback] = useState<string | null>(null);
@@ -44,7 +42,7 @@ const QuizApp = () => {
 
   // Shuffle questions only once per quiz change
   useEffect(() => {
-    setQuestions(shuffleArray([...quizzes[quizParam].questions])); // Shuffle questions ONCE
+    setQuestions(shuffleArray([...quizzes[quizIndex].questions])); // Shuffle questions ONCE
     setCurrentQuestionIndex(0);
     setFeedback(null);
     setShowNext(false);
