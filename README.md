@@ -57,3 +57,9 @@ export default tseslint.config({
 
 ```firebase deploy```
 ```firebase deploy --only hosting:quiz-app-10e3d```
+
+
+# Add New Quiz
+Add new file to data and assets for image
+Add to ./data/index.ts
+Access quiz from query parameter (match new index in ./data/index.ts)
