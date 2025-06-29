@@ -5,7 +5,7 @@ import QuizQuestionCard from "./components/QuizQuestionCard";
 import { db } from "./firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
-async function addNewDocument(name:string, score:number, quizIndex:number) {
+async function addNewDocument(name:string, score:number, quizIndex:string) {
   const inviteCode = 'MINGGU_BELAJAR';
   try {
     const docRef = await addDoc(collection(db, 'quiz-app'), {
@@ -27,8 +27,12 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 };
 
 const QuizApp = () => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const quizParam = searchParams.get('quiz') || 'quiz1';
+
+
   const [name, setName] = useState<string>("");
-  const [quizIndex, setQuizIndex] = useState<number>(0);
+  const [quizIndex, setQuizIndex] = useState<string>(quizParam);
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [feedback, setFeedback] = useState<string | null>(null);
@@ -40,7 +44,7 @@ const QuizApp = () => {
 
   // Shuffle questions only once per quiz change
   useEffect(() => {
-    setQuestions(shuffleArray([...quizzes[quizIndex].questions])); // Shuffle questions ONCE
+    setQuestions(shuffleArray([...quizzes[quizParam].questions])); // Shuffle questions ONCE
     setCurrentQuestionIndex(0);
     setFeedback(null);
     setShowNext(false);
@@ -118,10 +122,6 @@ const QuizApp = () => {
     setShowRetry(false);
   };
 
-  const handleSwitchQuiz = () => {
-    setQuizIndex((prev) => (prev + 1) % quizzes.length);
-    setName("");
-  };
 
   if (currentQuestionIndex >= questions.length) {
     return (
@@ -131,12 +131,6 @@ const QuizApp = () => {
           🎉 Congratulations, {name ? <span className="font-bold">{name}</span> : "Player"}! Your score is{" "}
           <span className="font-bold">{score}</span>.
         </p>
-        <button
-          className="mt-4 bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
-          onClick={handleSwitchQuiz}
-        >
-          Done
-        </button>
 
       </div>
     );
