@@ -74,7 +74,7 @@ const filemanagement2 = {
       answer: "Kelas Komputer",
     },
     {
-      question: "Perhatikan gambar file explorer di bawah. Ada berapa folder and file yang sudah disorot?",
+      question: "Perhatikan gambar file explorer di bawah. Berapakah folder dan file yang sudah disorot?",
       options: [{text:"2"},
       {text:"4"},
       {text:"6"},
@@ -83,7 +83,7 @@ const filemanagement2 = {
       answer: "6",
     },
     {
-      question: "Perhatikan gambar file explorer di bawah. Ada berapa folder and file yang sudah disorot?",
+      question: "Perhatikan gambar file explorer di bawah. Ada berapa folder dan file yang sudah disorot?",
       options: [{text:"0"},
       {text:"6"},
       {text:"4"},

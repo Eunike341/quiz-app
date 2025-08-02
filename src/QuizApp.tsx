@@ -135,21 +135,25 @@ const QuizApp = () => {
   }
 
   return (
+  <div className="w-full px-4 sm:px-6 md:px-8 max-w-screen-lg mx-auto">
     <QuizQuestionCard
-        name={name}
-        setName={setName}
-        quizTitle={quizzes[quizIndex].title}
-        currentQuestion={currentQuestion}
-        currentQuestionIndex={currentQuestionIndex}
-        totalQuestions={questions.length}
-        shuffledOptions={shuffledOptions}
-        feedback={feedback}
-        showNext={showNext}
-        showRetry={showRetry}
-        handleAnswer={handleAnswer}
-        handleNextQuestion={handleNextQuestion}
-        handleRetry={handleRetry}
-      />
+            name={name}
+            setName={setName}
+            quizTitle={quizzes[quizIndex].title}
+            currentQuestion={currentQuestion}
+            currentQuestionIndex={currentQuestionIndex}
+            totalQuestions={questions.length}
+            shuffledOptions={shuffledOptions}
+            feedback={feedback}
+            showNext={showNext}
+            showRetry={showRetry}
+            handleAnswer={handleAnswer}
+            handleNextQuestion={handleNextQuestion}
+            handleRetry={handleRetry}
+          />
+  </div>
+
+
   );
 };
 
