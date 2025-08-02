@@ -82,7 +82,7 @@ const filemanagement = {
       answer: "Klik kanan pada folder 'Latihan 1', klik 'Delete' option",
     },
     {
-      question: "Perhatikan gambar file explorer di bawah. Ada berapa file dan folder di dalam folder 'Week 1'?",
+      question: "Perhatikan gambar file explorer di bawah. Ada berapa file dan folder yang ditunjukkan?",
       options: [{text:"1"},
       {text:"2"},
       {text:"3"}],
