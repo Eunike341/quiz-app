@@ -9,4 +9,5 @@ export interface QuizQuestion {
   image?: string;
   options: QuizOption[];
   answer: string;
+  score?: number;
 }

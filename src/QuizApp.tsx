@@ -58,7 +58,7 @@ const QuizApp = () => {
 
   useEffect(() => {
     if (currentQuestionIndex >= questions.length && name) {
-      addNewDocument(name, score, quizIndex);
+      //addNewDocument(name, score, quizIndex);
     }
   }, [currentQuestionIndex, questions.length, name, score]); // Depend on these values
 
@@ -82,8 +82,10 @@ const QuizApp = () => {
       setShowNext(true);
       setShowRetry(false);
 
+      const baseScore = currentQuestion.score ?? 10;
+
       // Calculate the final score based on the highest retry count for that question
-      const finalScore = 10 * Math.pow(0.5, retryCount);
+      const finalScore = baseScore * Math.pow(0.5, retryCount);
 
       setQuestionScores((prev) => {
         const previousScore = prev[questionKey] || 0;
