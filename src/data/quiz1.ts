@@ -7,6 +7,7 @@ import berapaWordFiles from "../assets/berapaWordFiles.png";
 import jumlahMyfolder from "../assets/jumlahMyfolder.png";
 import bukaWebsite from "../assets/bukaWebsite.png";
 import slideBaru from "../assets/slideBaru.png";
+import type { QuizQuestion } from '../interface/QuizQuestion';
 
 const quiz1 = {
   id: 1,
@@ -149,7 +150,7 @@ const quiz1 = {
       answer: "Ketik gmail.com di textbox nomor 1, tekan key nomor 4",
       score: 5,
     },
-  ],
+  ] as QuizQuestion[],
 };
 
 export default quiz1;

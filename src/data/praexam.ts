@@ -1,6 +1,7 @@
 import screenshots from "../assets/screenshots.png";
 import searchInFolder from "../assets/searchInFolder.png";
 import email from "../assets/email.png";
+import type { QuizQuestion } from '../interface/QuizQuestion';
 
 const praexam = {
   id: 3,
@@ -139,7 +140,7 @@ const praexam = {
       answer: "Copy",
       score: 5,
     },
-  ],
+  ] as QuizQuestion[],
 };
 
 export default praexam;

@@ -58,7 +58,7 @@ const QuizApp = () => {
 
   useEffect(() => {
     if (currentQuestionIndex >= questions.length && name) {
-      //addNewDocument(name, score, quizIndex);
+      addNewDocument(name, score, quizIndex);
     }
   }, [currentQuestionIndex, questions.length, name, score]); // Depend on these values
 

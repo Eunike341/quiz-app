@@ -4,6 +4,7 @@ import sorot2 from "../assets/sorot2.png";
 import sorotlatketik from "../assets/sorotlatketik.png";
 import foldermana from "../assets/foldermana.png";
 import week1 from "../assets/week1.png";
+import type { QuizQuestion } from '../interface/QuizQuestion';
 
 const filemanagement = {
   id: 4,
@@ -89,7 +90,7 @@ const filemanagement = {
       image: week1,
       answer: "2",
     },
-  ],
+  ] as QuizQuestion[],
 };
 
 export default filemanagement;

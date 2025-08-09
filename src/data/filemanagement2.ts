@@ -2,6 +2,7 @@ import resumecv from "../assets/resumecv.png";
 import sorot6 from "../assets/sorot6.png";
 import foldermana from "../assets/foldermana.png";
 import sorot3 from "../assets/sorot3.png";
+import type { QuizQuestion } from '../interface/QuizQuestion';
 
 const filemanagement2 = {
   id: 5,
@@ -91,7 +92,7 @@ const filemanagement2 = {
       image: sorot3,
       answer: "3",
     },
-  ],
+  ] as QuizQuestion[],
 };
 
 export default filemanagement2;
