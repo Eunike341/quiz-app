@@ -1,6 +1,5 @@
 import addressBar from "../assets/addressBar.png";
 import numOfFolderFile from "../assets/numOfFolderFile.png";
-import viewMode from "../assets/viewMode.png";
 import wordMenu from "../assets/wordMenu.png";
 import insertPicture from "../assets/insertPicture.png";
 import berapaWordFiles from "../assets/berapaWordFiles.png";
