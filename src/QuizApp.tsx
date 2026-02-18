@@ -1,9 +1,10 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import quizzes from "./data";
 import { QuizQuestion } from "./interface/QuizQuestion";
 import QuizQuestionCard from "./components/QuizQuestionCard";
 import { db } from "./firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { WrongAttempt } from "./interface/WrongAttempt";
 
 async function addNewDocument(name:string, score:number, quizIndex:string) {
   const inviteCode = 'MINGGU_BELAJAR';
@@ -18,6 +19,49 @@ async function addNewDocument(name:string, score:number, quizIndex:string) {
     console.log('Document written with ID: ', docRef.id);
   } catch (e) {
     console.error('Error adding document: ', e);
+  }
+}
+
+const aggregateWrongAttempts = (
+  attempts: WrongAttempt[]
+): WrongAttempt[] => {
+  const map = new Map<string, WrongAttempt>();
+
+  attempts.forEach((attempt) => {
+    const key = `${attempt.q}::${attempt.wrongA}`;
+
+    if (map.has(key)) {
+      const existing = map.get(key)!;
+      map.set(key, { ...existing, num: (existing.num ?? 1) + 1 });
+    } else {
+      map.set(key, { ...attempt, num: 1 });
+    }
+
+  });
+
+  return Array.from(map.values());
+};
+
+
+async function storeWrongAnswer(name:string, quizIndex:string, wrongAttempts: WrongAttempt[]) {
+  const inviteCode = 'MINGGU_BELAJAR';
+  const aggregated = aggregateWrongAttempts(wrongAttempts);
+
+  if (aggregated.length === 0) return;
+
+  try {
+      const docRefWrongAttempt = await addDoc(collection(db, 'quiz-app-wrong-attempts'),
+          {
+          wrongAttempts: aggregated,
+          inviteCode,
+          timestamp: serverTimestamp(),
+          name,
+          quiz: 'quiz-' + quizIndex,
+          }
+      );
+      console.log('docRefWrongAttempt written with ID: ', docRefWrongAttempt.id);
+  } catch (e) {
+      console.error('Error adding docRefWrongAttempt: ', e);
   }
 }
 
@@ -38,7 +82,9 @@ const QuizApp = () => {
   const [showRetry, setShowRetry] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
   const [retryCounts, setRetryCounts] = useState<{ [question: string]: number }>({}); // Track retries per question
-  const [questionScores, setQuestionScores] = useState<{ [question: string]: number }>({}); // Store final scores per question
+  const [_questionScores, setQuestionScores] = useState<{ [question: string]: number }>({}); // Store final scores per question
+  const [wrongAttempts, setWrongAttempts] = useState<WrongAttempt[]>([]);
+  const hasSavedRef = useRef(false);
 
   // Shuffle questions only once per quiz change
   useEffect(() => {
@@ -50,17 +96,19 @@ const QuizApp = () => {
     setScore(0);
     setRetryCounts({});
     setQuestionScores({});
+    setWrongAttempts([]);
+    hasSavedRef.current = false;
   }, [quizIndex]);
 
   useEffect(() => {
-    console.log("Question Scores:", questionScores);
-  }, [questionScores]);
+    const isDone = currentQuestionIndex >= questions.length;
 
-  useEffect(() => {
-    if (currentQuestionIndex >= questions.length && name) {
-      addNewDocument(name, score, quizIndex);
-    }
-  }, [currentQuestionIndex, questions.length, name, score]); // Depend on these values
+    if (!isDone || !name || hasSavedRef.current) return;
+
+    hasSavedRef.current = true;
+    addNewDocument(name, score, quizIndex);
+    storeWrongAnswer(name, quizIndex, wrongAttempts);
+  }, [currentQuestionIndex, questions.length, name, score, quizIndex, wrongAttempts]); // Depend on these values
 
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -107,6 +155,16 @@ const QuizApp = () => {
         ...prev,
         [questionKey]: retryCount + 1,
       }));
+
+      // Add to wrong answer
+      setWrongAttempts((prev) => [
+        ...prev,
+        {
+          q: currentQuestion.question,
+          wrongA: selected,
+        },
+      ]);
+
     }
   };
 
