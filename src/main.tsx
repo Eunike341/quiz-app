@@ -7,6 +7,7 @@ import RecordsPage from "./RecordsPage.tsx";
 import Layout from "./Layout.tsx";
 import TravelForm from "./TravelForm.tsx";
 import PlacesList from "./PlacesList.tsx";
+import WrongAttemptsPage from "./WrongAttemptsPage.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="records" element={<RecordsPage />} />
           <Route path="places" element={<TravelForm />} />
           <Route path="places_list" element={<PlacesList />} />
+          <Route path="/wrong-attempts" element={<WrongAttemptsPage />} />
         </Route>
       </Routes>
     </Router>
