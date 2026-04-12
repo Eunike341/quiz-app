@@ -3,6 +3,7 @@ import email from "../assets/email.png";
 import resizeppt from "../assets/resizeppt.png";
 import cellmana from "../assets/cellmana.png";
 import excel from "../assets/excel.png";
+import bukaWebsite from "../assets/bukaWebsite.png";
 import type { QuizQuestion } from '../interface/QuizQuestion';
 
 const warmup = {
@@ -95,9 +96,13 @@ const warmup = {
     },
 
     {
-      question: "Ketika menggunakan Microsoft Powerpoint, menu yang dipakai untuk mengubah layout slide adalah",
-      options: [{text:"Insert → Pictures"}, {text:"Design → Background"}, {text:"Home → Layout"}, {text:"View → Zoom"}],
-      answer: "Home → Layout",
+      question: "Yang manakah langkah-langkah yang paling tepat untuk mengunjungi website https://tinyurl.com/kuis-pemanasan?",
+      options: [{text:"Ketik https://tinyurl.com/kuis-pemanasan di textbox nomor 2, tekan key nomor 4"},
+        {text:"Ketik https://tinyurl.com/kuis-pemanasan di textbox nomor 2, tekan key nomor 3"},
+        {text:"Ketik https://tinyurl.com/kuis-pemanasan di textbox nomor 1, tekan key nomor 4"},
+        {text:"Ketik https://tinyurl.com/kuis-pemanasan di textbox nomor 1, tekan key nomor 3"}],
+      image: bukaWebsite,
+      answer: "Ketik https://tinyurl.com/kuis-pemanasan di textbox nomor 1, tekan key nomor 4",
       score: 5,
     },
     {
