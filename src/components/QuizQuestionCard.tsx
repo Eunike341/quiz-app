@@ -50,7 +50,7 @@ const QuizQuestionCard = ({
         {shuffledOptions.map((option: QuizOption, idx: number) => (
           <button
             key={idx}
-            className="block w-full bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-700 transition-all text-lg font-medium"
+            className="block w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 transition-all text-lg font-medium"
             onClick={() => handleAnswer(option.text)}
             disabled={showNext || showRetry}
           >
