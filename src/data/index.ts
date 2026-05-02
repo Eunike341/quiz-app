@@ -16,6 +16,6 @@ const quizzes: Record<string, QuizType> = {'quiz1':quiz1, 'praexam':praexam,
  'excel3':excel3,
  'week7':week7,
  'warmup':warmup,
- 'warmupbeginner':warmupbeginner};
+ 'warmup-v1':warmupbeginner};
 
 export default quizzes;
