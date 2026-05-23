@@ -4,6 +4,7 @@ import resizeppt from "../assets/resizeppt.png";
 import cellmana from "../assets/cellmana.png";
 import excel from "../assets/excel.png";
 import bukaWebsite from "../assets/bukaWebsite.png";
+import fungsiApa from "../assets/fungsi-apa.png";
 import type { QuizQuestion } from '../interface/QuizQuestion';
 
 const warmup = {
@@ -11,14 +12,7 @@ const warmup = {
   title: "Warmup",
   questions: [
 
-    {
-      question: "Apa itu software?",
-      options: [{text:"Komponen fisik dari komputer yang dapat dilihat dan disentuh."},
-      {text:"Data elektronik berupa program atau instruksi untuk menjalankan perintah pada komputer"},
-      {text:"Kombinasi tombol yang digunakan untuk melakukan tindakan tertentu secara cepat dan efisien."}],
-      answer: "Data elektronik berupa program atau instruksi untuk menjalankan perintah pada komputer",
-      score: 5,
-    },
+
     {
       question: "Perhatikan gambar file explorer di bawah. Bagaimana cara membuka folder 'Screenshots'?",
       options: [{text:"Double click folder 'Screenshots'"},
@@ -30,15 +24,12 @@ const warmup = {
     },
 
     {
-      question: "Apakah shortcut untuk membatalkan perintah sebelumnya ('Undo')?",
-      options: [{text:"Ctrl + C"}, {text:"Ctrl + A"}, {text:"Ctrl + Z"}, {text:"Ctrl + V"}],
-      answer: "Ctrl + Z",
-      score: 5,
-    },
-    {
-      question: "Apakah shortcut untuk mengganti text tertentu dalam sebuah dokumen dengan text lain (replace)?",
-      options: [{text:"Ctrl + F"}, {text:"Ctrl + H"}, {text:"Ctrl + U"}, {text:"Ctrl + B"}],
-      answer: "Ctrl + H",
+      question: "Setelah Anda download file dari internet, di folder manakah biasanya file itu dapat ditemukan?",
+      options: [{text:"Downloads"},
+          {text:"Documents"},
+           {text:"Recycle Bin"},
+            {text:"Desktop"}],
+      answer: "Downloads",
       score: 5,
     },
 
@@ -56,9 +47,14 @@ const warmup = {
       score: 5,
     },
     {
-      question: "Apakah kita boleh mengunduh file yang diakhiri dengan .exe atau .com?",
-      options: [{text:"Boleh"}, {text:"Tidak boleh"}],
-      answer: "Tidak boleh",
+      question: "Skenario: Anda memiliki tabel penjualan Q1 (Januari–Maret) di cell range B2:B9. Formula mana yang dapat digunakan untuk menghitung totalnya di cell B10?",
+      options: [
+        {text:"=B2+B9"},
+        {text:"=B2+B10"},
+        {text:"=SUM(B2:B9)"},
+        {text:"=SUM(B2:B10)"}
+      ],
+      answer: "=SUM(B2:B9)",
       score: 5,
     },
     {
@@ -120,7 +116,7 @@ const warmup = {
       image: resizeppt
     },
     {
-      question: "Manakah yang merupakan tips presentasi yang baik?",
+      question: "Manakah yang merupakan tips presentasi/ powerpoint yang baik?",
       options: [{text:"Menulis teks sangat panjang dalam satu slide"},
           {text:"Menggunakan kalimat singkat dan jelas"},
           {text:"Membaca semua teks di slide"},
@@ -146,26 +142,50 @@ const warmup = {
     },
 
     {
-      question: "Di cell manakah terdapat warna favorit dari Lusi?",
+      question: "Aplikasi yang dapat digunakan sebagai pengganti Microsoft Excel adalah...",
       options: [
-        {text:"A4"},
-        {text:"B4"},
-        {text:"C4"},
+        {text:"Google Docs"},
+        {text:"Google Sheets"},
+        {text:"Google Drive"},
+        {text:"Google Slides"},
       ],
-      image: cellmana,
-      answer: "C4",
+      answer: "Google Sheets",
       score: 5,
     },
     {
-      question: "Di cell manakah terdapat warna favorit dari Meri?",
+      question: "Di cell manakah terdapat warna favorit dari Ria?",
       options: [
-        {text:"A1"},
-        {text:"A2"},
+        {text:"2C"},
+        {text:"5C"},
         {text:"C2"},
-        {text:"C1"},
+        {text:"C5"},
       ],
       image: cellmana,
-      answer: "C2",
+      answer: "C5",
+      score: 5,
+    },
+
+    {
+      question: "Anda memiliki kode pesanan 'SBY-2024-INV' di cell A1. Jika Anda hanya membutuhkan kode area 'SBY' dari teks tersebut, kombinasi fungsi apa yang paling efisien?",
+      options: [
+        {text:"=LEFT(A1, 3)"},
+        {text:"=LEFT(3, A1)"},
+        {text:"=LEFT(A, 1, 3)"},
+        {text:"=LEFT(A, 3, 1)"},
+      ],
+      answer: "=LEFT(A1, 3)",
+      score: 5,
+    },
+    {
+      question: "Fungsi apakah yang digunakan untuk mengisi value pada cell C11?",
+      options: [
+        {text:"=VLOOKUP(A11,A2:B6,2,FALSE)"},
+        {text:"=VLOOKUP(A11,A2:B6,3,FALSE)"},
+        {text:"=VLOOKUP(C11,A2:B6,2,FALSE)"},
+        {text:"=VLOOKUP(C11,A2:B6,3,FALSE)"},
+      ],
+      image: fungsiApa,
+      answer: "=VLOOKUP(A11,A2:B6,2,FALSE)",
       score: 5,
     },
 

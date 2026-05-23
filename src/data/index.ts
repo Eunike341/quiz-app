@@ -7,6 +7,7 @@ import excel3 from "./excel3";
 import week7 from "./week7";
 import warmup from "./warmup";
 import warmupbeginner from "./warmupbeginner";
+import excel4 from "./excel4";
 
 type QuizType = { id: number, title: string, questions: QuizQuestion[] };
 
@@ -16,6 +17,7 @@ const quizzes: Record<string, QuizType> = {'quiz1':quiz1, 'praexam':praexam,
  'excel3':excel3,
  'week7':week7,
  'warmup':warmup,
- 'warmup-v1':warmupbeginner};
+ 'warmup-v1':warmupbeginner,
+ 'excel4':excel4};
 
 export default quizzes;
