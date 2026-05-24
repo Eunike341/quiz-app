@@ -1,4 +1,5 @@
 import fungsiApa from "../assets/fungsi-apa.png";
+import sortfilter from "../assets/sortfilter.png";
 import type { QuizQuestion } from '../interface/QuizQuestion';
 
 const excel4 = {
@@ -39,17 +40,7 @@ const excel4 = {
       answer: "INDO",
       score: 10,
     },
-    {
-      question: "Fungsi VLOOKUP digunakan untuk mencari...",
-      options: [
-        {text:"referensi secara horizontal (mendatar)"},
-        {text:"referensi secara vertikal (menurun)"},
-        {text:"jumlah total nilai dalam sebuah rentang"},
-        {text:"teks tertentu di tengah kalimat"},
-      ],
-      answer: "referensi secara vertikal (menurun)",
-      score: 10,
-    },
+
     {
       question: "Dalam rumus =VLOOKUP(A2, B2:E10, 3, FALSE), angka '3' (sebagai col_index_num) berfungsi untuk menentukan...",
       options: [
@@ -118,6 +109,19 @@ const excel4 = {
         {text:"Quick Drag"}
       ],
       answer: "Auto Fill",
+      score: 10,
+    },
+
+    {
+      question: "Nomor berapa yang harus digunakan untuk memilah data film sehingga hanya film yang terdapat kata 'day' di judulnya yang ditunjukkan?",
+      options: [
+        {text:"1"},
+        {text:"2"},
+        {text:"3"},
+        {text:"4"}
+      ],
+      image: sortfilter,
+      answer: "3",
       score: 10,
     },
 
