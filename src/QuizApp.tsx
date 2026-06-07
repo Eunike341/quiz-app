@@ -195,7 +195,7 @@ const QuizApp = () => {
   }
 
   return (
-  <div className="w-full px-4 sm:px-6 md:px-8 max-w-screen-lg mx-auto">
+  <div className="w-svw h-svh px-4 sm:px-6 md:px-8 mx-auto">
     <QuizQuestionCard
             name={name}
             setName={setName}

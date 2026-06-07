@@ -18,18 +18,18 @@ const QuizQuestionCard = ({
   handleRetry,
 }: QuizQuestionCardProps) => {
   return (
-    <div className="max-w-2xl w-full mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">{quizTitle}</h2>
+    <div className="max-w-2xl w-full mx-auto px-6 py-[min(1.5rem,3svh)]">
+      <h2 className="text-[min(1.125rem,2.5svh)] leading-[min(2rem,4svh)] font-bold mb-[min(0.5rem,1svh)]">{quizTitle}</h2>
 
       {/* Name Input */}
-      <div className="mb-6">
-        <label className="block text-lg font-bold">Enter your name:</label>
+      <div className="mb-[min(1.5rem,3svh)]">
+        <label className="block text-[min(1.125rem,2.5svh)] leading-[min(1.75rem,3.5svh)] font-bold">Enter your name:</label>
         <input
           type="text"
           placeholder="Your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="border p-3 rounded-lg w-full mt-2 focus:ring-2 focus:ring-blue-500 transition-all"
+          className="border px-3 py-[min(0.75rem,2svh)] rounded-lg w-full mt-[min(0.5rem,1svh)] focus:ring-2 focus:ring-blue-500 transition-all"
         />
       </div>
 
@@ -59,7 +59,7 @@ const QuizQuestionCard = ({
                 <img
                 src={option.image}
                 alt={`Option ${idx + 1}`}
-                className="w-12 h-12 object-contain rounded bg-white p-1"
+                className="size-[min(3rem,6svh)] object-contain rounded bg-white p-[min(0.25rem,0.5svh)]"
                 />
             )}
             {option.text}
@@ -67,13 +67,13 @@ const QuizQuestionCard = ({
         ))}
       </div>
 
-      <div className="mt-3 min-h-10 flex items-center gap-2 text-sm font-bold transition-opacity duration-300">
+      <div className="mt-[min(0.75rem,2svh)] min-h-[min(2.5rem,5svh)] flex items-center gap-2 text-sm font-bold transition-opacity duration-300">
         {feedback ? (
           <>
             {feedback.includes("Correct") ? (
-              <CheckCircleIcon className="w-5 h-5 text-green-500" /> // Slightly smaller icon
+              <CheckCircleIcon className="size-[min(1.25rem,2.5svh)] text-green-500" /> // Slightly smaller icon
             ) : (
-              <XCircleIcon className="w-5 h-5 text-red-500" />
+              <XCircleIcon className="size-[min(1.25rem,2.5svh)] text-red-500" />
             )}
             <span className={`text-${feedback.includes("Correct") ? "green" : "red"}-600`}>
               {feedback}
@@ -84,17 +84,17 @@ const QuizQuestionCard = ({
         )}
       </div>
 
-      <div className="mt-3 min-h-14 flex flex-col items-start gap-3">
+      <div className="mt-[min(0.75rem,1.5svh)] min-h-[min(3.5rem,7svh)] flex flex-col items-start gap-[min(0.75rem,1.5svh)]">
         {showNext ? (
           <button
-            className="bg-green-500 text-white p-3 rounded-lg hover:bg-green-700 active:scale-95 transition-all w-fit inline-flex"
+            className="bg-green-500 text-white px-3 py-[min(0.75rem,1.5svh)] rounded-lg hover:bg-green-700 active:scale-95 transition-all w-fit inline-flex"
             onClick={handleNextQuestion}
           >
             Next
           </button>
         ) : showRetry ? (
           <button
-            className="bg-red-500 text-white p-3 rounded-lg hover:bg-red-700 active:scale-95 transition-all w-fit inline-flex"
+            className="bg-red-500 text-white px-3 py-[min(0.75rem,1.5svh)] rounded-lg hover:bg-red-700 active:scale-95 transition-all w-fit inline-flex"
             onClick={handleRetry}
           >
             Retry
